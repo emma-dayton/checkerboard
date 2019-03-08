@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+    <title>checkers</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </head>
+  <body>
+    <div id='wrapper'>
+      {% for row in range(num1) -%}
+      <div class='row'>
+        {% if row % 2 == 0 -%}
+          {% set temp = color1 %}
+          {% set color1 = color2 %}
+          {% set color2 = temp %}
+        {%- endif %}
+        {% for block in range(num2) -%}
+          {%- if block % 2 == 0 -%}
+            <div class="check" style="background: {{color1}}">
+            </div>
+            {%- endif -%}
+          {%- if block % 2 != 0 -%}
+            <div class="check" style="background: {{color2}}">
+            </div>
+          {%- endif -%}
+        {%- endfor %}
+      </div>
+      {%- endfor %}
+
+    </div>
+  </body>
